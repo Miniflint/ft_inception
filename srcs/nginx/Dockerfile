@@ -1,7 +1,10 @@
 FROM archlinux
 
-RUN pacman -Sy --noconfirm zsh nginx vim fastfetch
+ENV LANG=C.UTF-8
+ENV TZ=UTC
 
-COPY ./web_page/nginx.conf /usr/local/nginx/conf/nginx.conf
+RUN pacman -Sy --noconfirm nginx
 
-ENTRYPOINT ["bash"]
+EXPOSE 80
+
+CMD ["nginx",  "-g",  "daemon off;"]

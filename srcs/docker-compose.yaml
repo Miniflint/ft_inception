@@ -1,9 +1,10 @@
-version: "3.9"
-
 services:
   nginx:
-    build: "./nginx/"
+    build:
+      context: "./nginx/"
+      dockerfile: "Dockerfile"
     container_name: "nginx"
+    image: "archlinux:latest"
     ports:
-      - "80:80"
+      - "8080:80"
 
