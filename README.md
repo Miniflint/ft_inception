@@ -1,5 +1,6 @@
 This project has been created as part of the 42 curriculum by trgoel
 
+# MANDATORY:
 ## Description
 ### Presentation
 docker and docker-compose goes well together. it's an essential part of any network architecture.
