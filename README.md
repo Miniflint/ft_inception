@@ -28,6 +28,8 @@ It will create a host database, nginx and mariadb server
 // to complete
 
 ### Was AI used ?
+It was mostly done by hand. AI was used only a few amount of time when i couldn't debug my own docker-compose or dockerfile 
+a few uses were also for finding things easily (google overview)
 // to complete
 
 ## Project description
