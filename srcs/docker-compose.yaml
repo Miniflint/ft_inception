@@ -11,6 +11,16 @@ services:
     volumes:
       - wordpress-data:/mnt/wordpress
   
+  php-wp:
+    build:
+      context: "./php_wp/"
+      dockerfile: "Dockerfile"
+    container_name: "php-wp"
+    image: "custom_phpwp"
+    restart: "always"
+    volumes:
+      - wordpress-data:/mnt/wordpress
+  
   mariaDB:
     build:
       context: "./mariaDB/"
