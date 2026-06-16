@@ -5,4 +5,4 @@ all:
 clean:
 	docker system prune -a --volumes
 
-.PHONY: all re clean fclean
+.PHONY: all re clean

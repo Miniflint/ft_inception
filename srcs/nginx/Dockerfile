@@ -1,9 +1,9 @@
-FROM archlinux
+FROM archlinux:latest
 
 ENV LANG=C.UTF-8
 ENV TZ=UTC
 
-RUN pacman -Sy --noconfirm nginx
+RUN pacman -Syyu --noconfirm nginx
 
 EXPOSE 80
 

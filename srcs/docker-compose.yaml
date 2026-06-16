@@ -4,7 +4,18 @@ services:
       context: "./nginx/"
       dockerfile: "Dockerfile"
     container_name: "nginx"
-    image: "archlinux:latest"
+    image: "custom_nginx:latest"
     ports:
       - "8080:80"
+    restart: "always"
+  
+  mariaDB:
+    build:
+      context: "./mariaDB/"
+      dockerfile: "Dockerfile"
+    container_name: "mariaDB"
+    image: "custom_maria:latest"
+    restart: "always"
+    volumes:
+      - "./srcs/db:/mnt/db"
 
