@@ -4,18 +4,33 @@ services:
       context: "./nginx/"
       dockerfile: "Dockerfile"
     container_name: "nginx"
-    image: "custom_nginx:latest"
+    image: "custom_nginx"
     ports:
       - "8080:80"
     restart: "always"
+    volumes:
+      - wordpress-data:/mnt/wordpress
   
   mariaDB:
     build:
       context: "./mariaDB/"
       dockerfile: "Dockerfile"
-    container_name: "mariaDB"
-    image: "custom_maria:latest"
+    container_name: "mariadb"
+    image: "custom_maria"
     restart: "always"
     volumes:
-      - "./srcs/db:/mnt/db"
+      - db-data:/mnt/db
 
+volumes:
+  wordpress-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/miniflint/Documents/ft_inception/srcs/db/wordpress
+  db-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/miniflint/Documents/ft_inception/srcs/db/maria
