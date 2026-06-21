@@ -2,7 +2,7 @@
 CMD := $(shell docker ps -a -q)
 
 all:
-	docker compose -f srcs/docker-compose.yaml up -d --build
+	docker compose -f srcs/docker-compose.yaml --env-file ./srcs/.env up -d --build
 
 clean:
 	docker stop $(CMD)
