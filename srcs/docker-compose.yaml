@@ -5,9 +5,9 @@ services:
       dockerfile: "Dockerfile"
     container_name: "nginx"
     image: "custom_nginx"
+    restart: "always"
     ports:
       - "8080:80"
-    restart: "always"
     volumes:
       - wordpress-data:/mnt/wordpress
   
@@ -25,6 +25,8 @@ services:
     build:
       context: "./mariaDB/"
       dockerfile: "Dockerfile"
+    env_file:
+      - "./mariaDB/.env"
     container_name: "mariadb"
     image: "custom_maria"
     restart: "always"
