@@ -37,10 +37,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/miniflint/Documents/ft_inception/srcs/db/wordpress
+      device: ${PATH_WPHP}
   db-data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/miniflint/Documents/ft_inception/srcs/db/maria
+      device: ${PATH_MARIA}
