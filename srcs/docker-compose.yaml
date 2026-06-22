@@ -29,7 +29,7 @@ services:
     image: "custom_maria"
     restart: "always"
     volumes:
-      - db-data:/mnt/db
+      - db-data:/var/lib/mysql
 
 volumes:
   wordpress-data:
