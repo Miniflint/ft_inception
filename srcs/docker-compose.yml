@@ -1,0 +1,65 @@
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    env_file: .env
+    volumes:
+      - wordpress_db:/var/lib/mysql
+    networks:
+      - bkp
+      - inception
+    restart: always
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    env_file: .env
+    volumes:
+      - wordpress_files:/var/www/wordpress
+    networks:
+      - inception
+    restart: always
+
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    depends_on:
+      - wordpress
+    env_file: .env
+    volumes:
+      - wordpress_files:/var/www/wordpress
+    ports:
+      - "443:443"
+    networks:
+      - inception
+    restart: always
+
+  cron:
+    build: ./bonus/cron
+    container_name: cron
+    depends_on:
+      - mariadb
+    env_file: .env
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - wordpress_db:/var/lib/mysql:ro
+      - wordpress_backup:/backup
+    networks:
+      - bkp
+    restart: always
+
+volumes:
+  wordpress_db:
+  wordpress_files:
+  wordpress_backup:
+
+networks:
+  inception:
+    driver: bridge
+  bkp:
+    driver: bridge
+
