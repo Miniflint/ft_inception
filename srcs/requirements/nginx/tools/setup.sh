@@ -23,7 +23,7 @@ mv /tmp/default.conf "$CONF_FILE"
 if [ ! -f "$SSL_DIR/${DOMAIN_NAME}.crt" ]; then
     echo "Generating SSL certificate for ${DOMAIN_NAME}..."
     openssl req -x509 -nodes -days 365 \
-        -subj "/C=FR/ST=France/L=Paris/O=42/OU=cheyo/CN=${DOMAIN_NAME}" \
+        -subj "/C=FR/ST=France/L=Paris/O=42/OU=trgoel/CN=${DOMAIN_NAME}" \
         -newkey rsa:2048 \
         -keyout "$SSL_DIR/${DOMAIN_NAME}.key" \
         -out "$SSL_DIR/${DOMAIN_NAME}.crt"

@@ -26,5 +26,5 @@ RUN chmod +x /setup.sh
 
 # Expose port and run entrypoint
 EXPOSE 9000
-ENTRYPOINT ["/setup.sh"]
 
+ENTRYPOINT ["/setup.sh"]

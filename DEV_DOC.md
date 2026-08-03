@@ -17,7 +17,7 @@ Edit hosts file to edit 42login.
 ```
 nano /etc/hosts
 ```
-
+and add 127.0.0.1 42login.42.fr
 
 ## Run inception
 ```
