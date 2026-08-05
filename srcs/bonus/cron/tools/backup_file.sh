@@ -6,7 +6,7 @@ backupPath="/backup"
 fileName="${backupPath}/wordpress_db_${currDate}.bkp"
 
 #do the backup
-mariadb-backup --backup --host=mariadb --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --target-dir=${fileName}
+mariadb-backup --backup --host=mariadb --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --port=3306 --target-dir=${fileName}
 
 #check if ok or not for log file
 if [ $? -eq 0 ]; then
