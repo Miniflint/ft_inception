@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update dependencies
 RUN apt update -y && apt upgrade -y && \
-    apt install -y php-fpm php-mysql curl wget tar gettext-base mariadb-client && \
-    rm -rf /var/lib/apt/lists/*
+    apt install -y php-fpm php-mysql curl wget tar gettext-base mariadb-client \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Ensure WordPress directories
 RUN mkdir -p /var/www/wordpress

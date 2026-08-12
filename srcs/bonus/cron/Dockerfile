@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 # download mariadb-backup and cron 
 RUN apt update -y && apt upgrade -y && apt install -y mariadb-backup cron && \
-    rm -rf /var/lib/apt/lists/* && mkdir -p /backup
+    rm -rf /var/lib/apt/lists/* && mkdir -p /backup && apt-get clean
 
 # copy necessary files (backup, cron, and env saving)
 COPY ./tools/backup_file.sh /backup_file.sh

@@ -72,11 +72,28 @@ if ! wp user get "$WP_USER" \
         --allow-root
 fi
 
+if ! grep -q "WP_REDIS_HOST" "$WP_PATH/wp-config.php"; then
+    sed -i "/define( 'WP_DEBUG'/i \
+define('WP_REDIS_HOST', 'redis');\n\
+define('WP_REDIS_PORT', 6379);\n\
+define('WP_CACHE', true);\n\
+define('WP_CACHE_KEY_SALT', 'inception_42_');\n" \
+    $WP_PATH/wp-config.php
+fi
+
 # Set the correct ownership for WordPress files
 chown -R www-data:www-data "$WP_PATH"
 
 # Create the PHP-FPM runtime directory
 mkdir -p /run/php
+
+#instlal and allow redis cache
+if ! wp plugin is-installed redis-cache --path=$WP_PATH --allow-root; then
+    wp plugin install redis-cache --activate --path=$WP_PATH --allow-root
+fi
+if ! wp redis status --path=$WP_PATH --allow-root | grep -q "Connected"; then
+    wp redis enable --path=$WP_PATH --allow-root
+fi
 
 # Start PHP-FPM in the foreground
 echo "Starting PHP-FPM..."

@@ -4,7 +4,7 @@ FROM debian:bullseye
 # Update and install MariaDB
 RUN apt update -y && apt upgrade -y && \
     apt install -y mariadb-server gettext-base && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Copy the initialization script
 COPY ./conf/50-init.sql /docker-entrypoint-initdb.d/50-init.sql

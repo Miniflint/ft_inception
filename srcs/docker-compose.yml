@@ -22,6 +22,14 @@ services:
       - inception
     restart: always
 
+  redis:
+    depends_on:
+      - wordpress
+    build: ./bonus/redis
+    container_name: redis
+    restart: always
+    networks:
+      - inception
   nginx:
     build: ./requirements/nginx
     container_name: nginx
